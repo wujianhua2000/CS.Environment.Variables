@@ -12,6 +12,10 @@ namespace EnvironmentVariables
 {
     public partial class FormMain : Form
     {
+        private int rectH;
+
+        private int rectW;
+
         //.....................................................................
         /// <summary>
         /// 
@@ -91,6 +95,9 @@ namespace EnvironmentVariables
 
             this.ButtonClose.Left = ( int ) ( 0.5 * ( rectWID - exitWID ) );
 
+            this.rectH = this.Height;
+            this.rectW = this.Width;
+
             return;
         }
 
@@ -108,8 +115,8 @@ namespace EnvironmentVariables
 
             foreach ( DictionaryEntry name in listing ) 
             {
-                this.ListSysVar.Items.Add( name.Key );
                 this.ListSysVar.Items.Add( "-".PadRight( 80, '-' ) );
+                this.ListSysVar.Items.Add( name.Key );
                 this.ListSysVar.Items.Add( "      = " + name.Value );
                 this.ListSysVar.Items.Add( string.Empty );
             }
@@ -155,6 +162,42 @@ namespace EnvironmentVariables
             this.ListPathValues( );
 
             return;
+        }
+
+        //.....................................................................
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonPathDelete_Click( object sender, EventArgs e )
+        {
+
+        }
+
+        //.....................................................................
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FormMain_Resize( object sender, EventArgs e )
+        {
+            this.Height = this.rectH;
+            this.Width = this.rectW;
+
+            return;
+        }
+
+        //.....................................................................
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ListPath_SelectedIndexChanged( object sender, EventArgs e )
+        {
+
         }
 
         //.....................................................................
