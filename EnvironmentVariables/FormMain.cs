@@ -172,7 +172,36 @@ namespace EnvironmentVariables
         /// <param name="e"></param>
         private void ButtonPathDelete_Click( object sender, EventArgs e )
         {
+            string firepath = this.TextPathFire.Text;
+            if ( string.IsNullOrEmpty( firepath ) ) return;
 
+            int indexSelected = this.ListPath.SelectedIndex;
+
+            StringBuilder buffer = new StringBuilder( );
+
+            int count = this.ListPath.Items.Count;
+            for ( int idx = 0; idx < count; idx++ ) 
+            {
+                if ( idx == indexSelected ) continue;
+
+                string pathname = this.ListPath.Items[idx].ToString();
+                buffer.AppendFormat( "{0};", pathname );
+            }
+
+            DialogResult result = MessageBox.Show( "确认修改一下信息吗？\n\n" + "新的 PATH 内容如下：\n\n" + buffer.ToString( ),
+                                                   "提示信息",
+                                                   MessageBoxButtons.YesNoCancel
+                                                   );
+            if ( result != DialogResult.Yes ) return;
+
+            DialogResult again = MessageBox.Show( "再次确认修改一下信息吗？", "提示信息", MessageBoxButtons.YesNoCancel );
+            if ( again != DialogResult.Yes ) return;
+
+            Environment.SetEnvironmentVariable( "PATH", buffer.ToString( ), EnvironmentVariableTarget.Machine );
+
+            this.ListPathValues( );
+
+            return;
         }
 
         //.....................................................................
@@ -197,7 +226,15 @@ namespace EnvironmentVariables
         /// <param name="e"></param>
         private void ListPath_SelectedIndexChanged( object sender, EventArgs e )
         {
+            int index = this.ListPath.SelectedIndex;
 
+            if ( index < 0 ) return;
+
+            string item = this.ListPath.Items[ index ].ToString( );
+
+            this.TextPathFire.Text = item;
+
+            return;
         }
 
         //.....................................................................

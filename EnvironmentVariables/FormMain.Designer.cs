@@ -33,7 +33,6 @@
             this.DialogPath = new System.Windows.Forms.FolderBrowserDialog( );
             this.tabControl1 = new System.Windows.Forms.TabControl( );
             this.tabPage1 = new System.Windows.Forms.TabPage( );
-            this.tabPage2 = new System.Windows.Forms.TabPage( );
             this.ButtonPathDelete = new System.Windows.Forms.Button( );
             this.button1 = new System.Windows.Forms.Button( );
             this.label2 = new System.Windows.Forms.Label( );
@@ -42,6 +41,7 @@
             this.label1 = new System.Windows.Forms.Label( );
             this.TextPath = new System.Windows.Forms.TextBox( );
             this.ButtonShowPath = new System.Windows.Forms.Button( );
+            this.tabPage2 = new System.Windows.Forms.TabPage( );
             this.ButtonSaveCust = new System.Windows.Forms.Button( );
             this.ButtonShowCust = new System.Windows.Forms.Button( );
             this.label4 = new System.Windows.Forms.Label( );
@@ -52,6 +52,8 @@
             this.ButtonListVars = new System.Windows.Forms.Button( );
             this.label5 = new System.Windows.Forms.Label( );
             this.ListSysVar = new System.Windows.Forms.ListBox( );
+            this.label6 = new System.Windows.Forms.Label( );
+            this.TextPathFire = new System.Windows.Forms.TextBox( );
             this.tabControl1.SuspendLayout( );
             this.tabPage1.SuspendLayout( );
             this.tabPage2.SuspendLayout( );
@@ -90,6 +92,8 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add( this.TextPathFire );
+            this.tabPage1.Controls.Add( this.label6 );
             this.tabPage1.Controls.Add( this.ButtonPathDelete );
             this.tabPage1.Controls.Add( this.button1 );
             this.tabPage1.Controls.Add( this.label2 );
@@ -105,25 +109,9 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "环境变量 PATH  ";
             // 
-            // tabPage2
-            // 
-            this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage2.Controls.Add( this.ButtonSaveCust );
-            this.tabPage2.Controls.Add( this.ButtonShowCust );
-            this.tabPage2.Controls.Add( this.label4 );
-            this.tabPage2.Controls.Add( this.TextCustValue );
-            this.tabPage2.Controls.Add( this.label3 );
-            this.tabPage2.Controls.Add( this.TextCustName );
-            this.tabPage2.Location = new System.Drawing.Point( 4, 22 );
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding( 3 );
-            this.tabPage2.Size = new System.Drawing.Size( 837, 393 );
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "自定义环境变量  ";
-            // 
             // ButtonPathDelete
             // 
-            this.ButtonPathDelete.Location = new System.Drawing.Point( 583, 315 );
+            this.ButtonPathDelete.Location = new System.Drawing.Point( 583, 326 );
             this.ButtonPathDelete.Name = "ButtonPathDelete";
             this.ButtonPathDelete.Size = new System.Drawing.Size( 75, 23 );
             this.ButtonPathDelete.TabIndex = 21;
@@ -144,17 +132,17 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point( 14, 101 );
+            this.label2.Location = new System.Drawing.Point( 14, 85 );
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size( 53, 12 );
+            this.label2.Size = new System.Drawing.Size( 59, 12 );
             this.label2.TabIndex = 19;
-            this.label2.Text = "PATH 键:";
+            this.label2.Text = "PATH 键：";
             // 
             // ListPath
             // 
             this.ListPath.FormattingEnabled = true;
             this.ListPath.ItemHeight = 12;
-            this.ListPath.Location = new System.Drawing.Point( 85, 101 );
+            this.ListPath.Location = new System.Drawing.Point( 85, 85 );
             this.ListPath.Name = "ListPath";
             this.ListPath.Size = new System.Drawing.Size( 654, 208 );
             this.ListPath.TabIndex = 18;
@@ -188,13 +176,29 @@
             // 
             // ButtonShowPath
             // 
-            this.ButtonShowPath.Location = new System.Drawing.Point( 664, 315 );
+            this.ButtonShowPath.Location = new System.Drawing.Point( 664, 326 );
             this.ButtonShowPath.Name = "ButtonShowPath";
             this.ButtonShowPath.Size = new System.Drawing.Size( 75, 23 );
             this.ButtonShowPath.TabIndex = 14;
             this.ButtonShowPath.Text = "查询";
             this.ButtonShowPath.UseVisualStyleBackColor = true;
             this.ButtonShowPath.Click += new System.EventHandler( this.ButtonShowPath_Click );
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage2.Controls.Add( this.ButtonSaveCust );
+            this.tabPage2.Controls.Add( this.ButtonShowCust );
+            this.tabPage2.Controls.Add( this.label4 );
+            this.tabPage2.Controls.Add( this.TextCustValue );
+            this.tabPage2.Controls.Add( this.label3 );
+            this.tabPage2.Controls.Add( this.TextCustName );
+            this.tabPage2.Location = new System.Drawing.Point( 4, 22 );
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding( 3 );
+            this.tabPage2.Size = new System.Drawing.Size( 837, 393 );
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "自定义环境变量  ";
             // 
             // ButtonSaveCust
             // 
@@ -287,6 +291,22 @@
             this.ListSysVar.Size = new System.Drawing.Size( 741, 328 );
             this.ListSysVar.TabIndex = 15;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point( 14, 302 );
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size( 155, 12 );
+            this.label6.TabIndex = 22;
+            this.label6.Text = "预备 *** 删除*** 的目录：";
+            // 
+            // TextPathFire
+            // 
+            this.TextPathFire.Location = new System.Drawing.Point( 186, 299 );
+            this.TextPathFire.Name = "TextPathFire";
+            this.TextPathFire.Size = new System.Drawing.Size( 553, 21 );
+            this.TextPathFire.TabIndex = 23;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 12F );
@@ -340,6 +360,8 @@
         private System.Windows.Forms.Button ButtonListVars;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ListBox ListSysVar;
+        private System.Windows.Forms.TextBox TextPathFire;
+        private System.Windows.Forms.Label label6;
 
     }
 }
