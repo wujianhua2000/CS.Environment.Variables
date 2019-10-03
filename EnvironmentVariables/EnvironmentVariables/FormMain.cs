@@ -238,5 +238,70 @@ namespace EnvironmentVariables
         }
 
         //.....................................................................
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonCustSelePath_Click( object sender, EventArgs e )
+        {
+            if ( this.DialogPath.ShowDialog( ) != System.Windows.Forms.DialogResult.OK ) return;
+
+            string pathname = this.DialogPath.SelectedPath;
+
+            this.TextCustPath.Text = pathname;
+
+            return;
+        }
+
+        //.....................................................................
+        /// <summary>
+        /// 保存一个目录名到自定义的 KEY 中。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonCustSavePath_Click( object sender, EventArgs e )
+        {
+            string newPathNam = this.TextCustPath.Text;
+
+            if ( string.IsNullOrEmpty( newPathNam ) ) return;
+
+            string custSvarName = this.TextCustName.Text;
+
+            string pathvalues = Environment.GetEnvironmentVariable( custSvarName, EnvironmentVariableTarget.Machine );
+
+            bool found = false;
+
+            if ( !string.IsNullOrEmpty( pathvalues ) )
+            {
+                string[ ] pathlist = pathvalues.Split( ";".ToCharArray( ), StringSplitOptions.RemoveEmptyEntries );
+
+                foreach ( string name in pathlist )
+                {
+                    bool same = ( name.ToUpper( ).Equals( newPathNam.ToUpper( ) ) );
+
+                    if ( same ) found = true;
+                }
+            }
+
+            if ( found ) MessageBox.Show( "自定义环境变量已经包含需要的路径，无需二次添加。" );
+            if ( found ) return;
+
+            pathvalues = ( string.IsNullOrEmpty( pathvalues ) ) ? string.Empty : pathvalues;
+
+            bool gutEND = ( string.IsNullOrEmpty( pathvalues ) ) ? true : pathvalues.EndsWith( ";" );
+
+            string newpathing = ( gutEND ) ? pathvalues + newPathNam + ";"
+                                           : pathvalues + ";" + newPathNam + ";";
+
+            Environment.SetEnvironmentVariable( custSvarName, newpathing, EnvironmentVariableTarget.Machine );
+
+            //  显示新数据
+            this.TextCustValue.Text = Environment.GetEnvironmentVariable( custSvarName, EnvironmentVariableTarget.Machine );
+
+            return;
+        }
+
+        //.....................................................................
     }
 }
